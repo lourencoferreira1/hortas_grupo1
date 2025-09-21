@@ -1,0 +1,118 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Teste {
+	public static void main(String[] args) {
+		GestorHorta gestor = new GestorHorta();
+		ArrayList<Talhão> talhoes = new ArrayList<>();
+		ArrayList<Plantaçao> plantaçoes = new ArrayList<>();
+		int escolha = 0;
+		boolean ativo;
+		Scanner sc = new Scanner(System.in);
+		
+		do {
+			System.out.println("<«<«<Menu>»>»>");
+			System.out.println("1.registar horta");
+			System.out.println("2.registar talhão");
+			System.out.println("3.registar plantação");
+			System.out.println("4.imprimir detalhes das plantações de uma dada horta");
+			System.out.println("5.imprimir a área total de uma horta em metros quadrados");
+			System.out.println("6.imprimir o nome e a área da horta com maior área");
+			System.out.println("7.imprimir o nome das hortas que têm plantadas nos seus talhões um dado tipo de cultura");
+			System.out.println("0. fim");
+			sc.nextLine();
+			
+			switch (escolha) {
+				case 1:
+					System.out.println("qual o nome da nova horta?");
+					String nome;
+	 				nome = sc.nextLine();
+					
+					System.out.println("qual a localização da nova horta?");
+					String localização;
+	 				localização = sc.nextLine();
+					
+					Horta_Gui h = new Horta_Gui(nome, localização);
+					
+					gestor.addHorta();
+					
+					System.out.println("horta criada com sucesso");
+					break;
+				case 2:
+					System.out.println("qual o id do novo talhão?");
+					int id;
+	 				id = sc.nextInt();
+					
+					System.out.println("qual a área em metros quadrados do talhão?");
+					float área;
+	 				área = sc.nextFloat();
+					
+					Talhão t = new Talhão(id, área);
+					
+					h.addTalhão(t);
+					
+					System.out.println("talhão criado com sucesso");
+					break;
+				case 3:
+					System.out.println("qual a data de sementeira nesta nova plantação?");
+					LocalDate data = null;
+	 				
+          while (data == null) {
+            String input_data = sc.nextLine();
+
+            try {
+              data = LocalDate.parse(input_data);
+            } catch (Exception e) {
+              System.out.println("input errado. tente o formato YYYY-MM-DD");
+            }
+	        }
+
+					System.out.println("qual o tipo de cultura nesta nova plantação?");
+					String tipo;
+	 				tipo = sc.nextLine();
+					
+					Plantaçao p = new Plantaçao(data, tipo);
+					
+					System.out.println("plantação criada com sucesso");
+					break;
+				case 4:
+					System.out.println("Qual o nome da horta em questão?");
+					nome = sc.nextLine();
+					
+					System.out.println("Qual a localização da horta em questão?");
+					localização = sc.nextLine();
+					
+					h.imprimirDetalhes(); //falta definir h
+					break;
+				case 5:
+					System.out.println("Qual o nome da horta em questão?");
+					nome = sc.nextLine();
+					
+					System.out.println("Qual a localização da horta em questão?");
+					localização = sc.nextLine();
+					
+					float area_total = 0;
+					for (Talhão t: h.getTalhoes()) { // falta definir h
+						area_total += t.getArea();
+					}
+					System.out.println(area_total + " metros quadrados");
+					break;
+				case 6:
+					System.out.println(gestor.getMaior());
+					break;
+				case 7:
+					System.out.println("qual o tipo de cultura pelo qual quer filtrar as hortas?");
+					tipo = sc.nextLine();
+					
+					for (Horta h: hortas) {
+						for(Talhão t: talhoes) {
+							if (t.getTipo() == tipo) {
+								System.out.println(h.getNome());
+								break;
+							}
+						}
+					}
+			}
+		} while (ativo);
+	}
+}
