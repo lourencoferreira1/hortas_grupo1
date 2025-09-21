@@ -58,15 +58,15 @@ public class Teste {
 					System.out.println("qual a data de sementeira nesta nova plantação?");
 					LocalDate data = null;
 	 				
-          while (data == null) {
-            String input_data = sc.nextLine();
+          			while (data == null) {
+            			String input_data = sc.nextLine();
 
-            try {
-              data = LocalDate.parse(input_data);
-            } catch (Exception e) {
-              System.out.println("input errado. tente o formato YYYY-MM-DD");
-            }
-	        }
+            			try {
+              			data = LocalDate.parse(input_data);
+            			} catch (Exception e) {
+            			  System.out.println("input errado. tente o formato YYYY-MM-DD");
+            			}
+	        			}
 
 					System.out.println("qual o tipo de cultura nesta nova plantação?");
 					String tipo;
