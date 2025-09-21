@@ -5,7 +5,7 @@ public class Teste {
 	public static void main(String[] args) {
 		GestorHorta gestor = new GestorHorta();
 		ArrayList<Talhão> talhoes = new ArrayList<>();
-		ArrayList<Plantação> plantaçoes = new ArrayList<>();
+		ArrayList<Plantaçao> plantaçoes = new ArrayList<>();
 		int escolha = 0;
 		boolean ativo;
 		Scanner sc = new Scanner(System.in);
@@ -26,9 +26,11 @@ public class Teste {
 				case 1:
 					System.out.println("qual o nome da nova horta?");
 					String nome;
+	 				nome = sc.nextLine();
 					
 					System.out.println("qual a localização da nova horta?");
 					String localização;
+	 				localização = sc.nextLine();
 					
 					Horta_Gui h = new Horta_Gui(nome, localização);
 					
@@ -39,9 +41,11 @@ public class Teste {
 				case 2:
 					System.out.println("qual o id do novo talhão?");
 					int id;
+	 				id = sc.nextInt();
 					
 					System.out.println("qual a área em metros quadrados do talhão?");
 					float área;
+	 				área = sc.nextFloat();
 					
 					Talhão t = new Talhão(id, área);
 					
@@ -52,11 +56,13 @@ public class Teste {
 				case 3:
 					System.out.println("qual a data de sementeira nesta nova plantação?");
 					String data;
-					
+	 				data = sc.nextLine();
+	 
 					System.out.println("qual o tipo de cultura nesta nova plantação?");
 					String tipo;
+	 				tipo = sc.nextLine();
 					
-					Plantação p = new Plantação(data, tipo);
+					Plantaçao p = new Plantaçao(data, tipo);
 					
 					System.out.println("plantação criada com sucesso");
 					break;
